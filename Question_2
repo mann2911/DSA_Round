@@ -1,0 +1,48 @@
+Question 2: Next Happy Number
+
+Algorithm :
+
+public class Question2 {
+    public static void main(String[] args) {
+        
+
+        // int n = 10; 
+        int n=8;
+        n++; // bcz it says that after the given number
+        while(n<1000000){
+            if(solve(n)){
+                System.out.println("ans "+n);
+                break;
+            }else{
+                n++;
+            }
+
+        }
+
+    }
+
+    public static boolean solve(int n){
+        int num = n;
+        int tempnum = check(num);
+        while(tempnum>9){
+            tempnum = check(tempnum);
+        }
+        if(tempnum==1)
+            return true;
+        else
+            return false;
+    }
+
+    public static int check(int num){
+        int sum = 0;
+        while(num>0){
+            int t = num%10;
+            sum += t*t;
+            num=num/10;
+        }
+
+        return sum;
+
+    }
+}
+
