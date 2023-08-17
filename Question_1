@@ -1,0 +1,70 @@
+
+DSA Questions.
+
+Question 1: The Painter's Partition Problem-II
+
+Algorithm : 
+
+
+public class Question1 {
+    public static void main(String[] args) {
+        
+
+        // question 1
+
+        // int arr[]={5,10,30,20,15};
+        // int n=5;
+        // int k=3;
+
+        int arr[]={10,20,30,40};
+        int n=4;
+        int k=2;
+
+        int ans = solve(arr,n,k);
+        System.out.println("ans "+ans);
+    }
+
+    public static int solve(int nums[],int n,int k){
+
+        int len = nums.length;
+
+        int left = 0;
+        int right = 0;
+        int ans = 0;
+        for(int i=0;i<len;i++){
+            right += nums[i];
+        }
+
+        while(left<=right){
+
+            int mid = left + (right-left)/2;
+            if(check(mid,k,nums)){
+                ans = mid;
+                right = mid-1;
+            }else{
+                left = mid+1;
+            }
+
+        }
+
+
+        return ans;
+    }
+
+    public static boolean check(int mid,int k,int nums[]){
+
+        int len = nums.length;
+        int sum = 0;
+        int count=1;
+        for(int i=0;i<len;i++){
+            sum+=nums[i];
+            if(sum>mid){
+                sum=nums[i];
+                count++;
+                
+            }
+        }
+        return count==k;
+        
+    }
+}
